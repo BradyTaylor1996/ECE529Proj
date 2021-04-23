@@ -1,4 +1,4 @@
-Problem9.7 read0 operation
+Project Sense amplifier
 
 *
 * Predictive Technology Model Beta Version
