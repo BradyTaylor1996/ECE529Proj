@@ -1,0 +1,35 @@
+* 180nm NOR gates
+
+.INCLUDE ./180nm-PTM-BSIM3-Bulk-CMOS-V0-L49-2001.txt
+
+.PARAM width_nmos=0.18um
+.PARAM width_pmos=0.36um
+.PARAM length=0.18um
+
+* define INV subcircuit - in out vdd gnd
+.subckt INV in_local out_local vdd_local gnd_local
+Mn out_local in_local gnd_local gnd_local NMOS W='width_nmos' L='length'
+Mp out_local in_local vdd_local vdd_local PMOS W='width_pmos' L='length'
+.ends
+
+* define NOR2 subcircuit - a b out vdd gnd
+.subckt NOR2 a_local b_local out_local vdd_local gnd_local
+Mn1 out_local a_local gnd_local gnd_local NMOS W='width_nmos' L='length'
+Mn2 out_local b_local gnd_local gnd_local NMOS W='width_nmos' L='length'
+Mp1 1 a_local vdd_local vdd_local PMOS W='width_pmos*2' L='length'
+Mp2 out_local b_local 1 vdd_local PMOS W='width_pmos*2' L='length'
+.ends
+
+* define NAND2 subcircuit - a b out vdd gnd
+.subckt NAND2 a_local b_local out_local vdd_local gnd_local
+Mn1 out_local a_local 1 gnd_local NMOS W='width_nmos*2' L='length'
+Mn2 1 b_local gnd_local gnd_local NMOS W='width_nmos*2' L='length'
+Mp1 out_local a_local vdd_local vdd_local PMOS W='width_pmos' L='length'
+Mp2 out_local b_local vdd_local vdd_local PMOS W='width_pmos' L='length'
+.ends
+
+* define AND2 subcircuit - a b out vdd gnd
+.subckt AND2 a_local b_local out_local vdd_local gnd_local
+Xnand a_local b_local 1 vdd_local gnd_local NAND2
+Xinv 1 out_local vdd_local gnd_local INV
+.ends
