@@ -1,0 +1,19 @@
+* "simulator" "HSPICE" 
+* "version" "F-2011.09-SP2 32-BIT"
+* "format" "HSP"
+* "rundate" "09:17:45 04/24/2021 "
+* "netlist" "SRAM_cell_read.sp "
+* "runtitle" "sram cell subcircuit"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ b =   1.8000        
++ b_bar =   1.8000        
++ q =   1.4214p       
++ q_bar =   1.8000        
++ vdd =   1.8000        
++ wl =   0.            
+***   END: Saved Operating Point ***                     
