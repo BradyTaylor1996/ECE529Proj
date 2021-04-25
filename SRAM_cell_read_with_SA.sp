@@ -14,7 +14,7 @@ M6 q_bar q vdd vdd PMOS L=200N W=1.8U
 .ends sram_cell
 
 *SA in Fig 8_20
-.subckt SA b b_bar Out SenseEnable vdd gnd
+.subckt SA b b_bar out SenseEnable vdd gnd
 M3 1 1 vdd vdd PMOS W=1.2u L=200n
 M4 out 1 vdd vdd PMOS W=1.2u L=200n
 M1 1 b 2 gnd NMOS W=600n L=200n
