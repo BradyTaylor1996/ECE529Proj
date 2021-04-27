@@ -30,5 +30,4 @@ X2 b255 b254 b253 b252 b251 b250 b249 b248 b247 b246 b245 b244 b243 b242 b241 b2
 
 * Output
 .probe tran v(wl0) v(b0) v(b_bar0) v(out0)
-
 .end
