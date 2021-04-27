@@ -1,4 +1,4 @@
-SRAM Cell Subcircuit
+SRAM array simulation
 
 * Models
 .include ./sram_array.txt
