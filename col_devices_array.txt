@@ -1,0 +1,543 @@
+* 180nm write driver and precharge
+
+.INCLUDE ./gates.txt
+
+* define WD subcircuit - col w d dbar b bbar vdd gnd
+.subckt WD col_local w_local d_local dbar_local b_local bbar_local vdd_local gnd_local
+Xand13 w_local    dbar_local 13 vdd_local gnd_local AND2
+Xand14 w_local    d_local    14 vdd_local gnd_local AND2
+Mn13   b_local    13         1         gnd_local NMOS W='width_nmos*12' L='length'
+Mn14   bbar_local 14         1         gnd_local NMOS W='width_nmos*12' L='length'
+Mn15   1          col_local  gnd_local gnd_local NMOS W='width_nmos*12' L='length'
+.ends
+
+* define PC subcircuit - pc b bbar vdd gnd
+.subckt PC pc_local b_local bbar_local vdd_local gnd_local
+Mn7 b_local    pc_local vdd_local vdd_local PMOS W='width_nmos*24' L='length'
+Mn8 bbar_local pc_local vdd_local vdd_local PMOS W='width_nmos*24' L='length'
+.ends
+
+* define WD array subcircuit - col w d dbar b bbar vdd gnd
+.subckt WD_array col255 col254 col253 col252 col251 col250 col249 col248 col247 col246 col245 col244 col243 col242 col241 col240 col239 col238 col237 col236 col235 col234 col233 col232 col231 col230 col229 col228 col227 col226 col225 col224 col223 col222 col221 col220 col219 col218 col217 col216 col215 col214 col213 col212 col211 col210 col209 col208 col207 col206 col205 col204 col203 col202 col201 col200 col199 col198 col197 col196 col195 col194 col193 col192 col191 col190 col189 col188 col187 col186 col185 col184 col183 col182 col181 col180 col179 col178 col177 col176 col175 col174 col173 col172 col171 col170 col169 col168 col167 col166 col165 col164 col163 col162 col161 col160 col159 col158 col157 col156 col155 col154 col153 col152 col151 col150 col149 col148 col147 col146 col145 col144 col143 col142 col141 col140 col139 col138 col137 col136 col135 col134 col133 col132 col131 col130 col129 col128 col127 col126 col125 col124 col123 col122 col121 col120 col119 col118 col117 col116 col115 col114 col113 col112 col111 col110 col109 col108 col107 col106 col105 col104 col103 col102 col101 col100 col99 col98 col97 col96 col95 col94 col93 col92 col91 col90 col89 col88 col87 col86 col85 col84 col83 col82 col81 col80 col79 col78 col77 col76 col75 col74 col73 col72 col71 col70 col69 col68 col67 col66 col65 col64 col63 col62 col61 col60 col59 col58 col57 col56 col55 col54 col53 col52 col51 col50 col49 col48 col47 col46 col45 col44 col43 col42 col41 col40 col39 col38 col37 col36 col35 col34 col33 col32 col31 col30 col29 col28 col27 col26 col25 col24 col23 col22 col21 col20 col19 col18 col17 col16 col15 col14 col13 col12 col11 col10 col9 col8 col7 col6 col5 col4 col3 col2 col1 col0 w d255 d254 d253 d252 d251 d250 d249 d248 d247 d246 d245 d244 d243 d242 d241 d240 d239 d238 d237 d236 d235 d234 d233 d232 d231 d230 d229 d228 d227 d226 d225 d224 d223 d222 d221 d220 d219 d218 d217 d216 d215 d214 d213 d212 d211 d210 d209 d208 d207 d206 d205 d204 d203 d202 d201 d200 d199 d198 d197 d196 d195 d194 d193 d192 d191 d190 d189 d188 d187 d186 d185 d184 d183 d182 d181 d180 d179 d178 d177 d176 d175 d174 d173 d172 d171 d170 d169 d168 d167 d166 d165 d164 d163 d162 d161 d160 d159 d158 d157 d156 d155 d154 d153 d152 d151 d150 d149 d148 d147 d146 d145 d144 d143 d142 d141 d140 d139 d138 d137 d136 d135 d134 d133 d132 d131 d130 d129 d128 d127 d126 d125 d124 d123 d122 d121 d120 d119 d118 d117 d116 d115 d114 d113 d112 d111 d110 d109 d108 d107 d106 d105 d104 d103 d102 d101 d100 d99 d98 d97 d96 d95 d94 d93 d92 d91 d90 d89 d88 d87 d86 d85 d84 d83 d82 d81 d80 d79 d78 d77 d76 d75 d74 d73 d72 d71 d70 d69 d68 d67 d66 d65 d64 d63 d62 d61 d60 d59 d58 d57 d56 d55 d54 d53 d52 d51 d50 d49 d48 d47 d46 d45 d44 d43 d42 d41 d40 d39 d38 d37 d36 d35 d34 d33 d32 d31 d30 d29 d28 d27 d26 d25 d24 d23 d22 d21 d20 d19 d18 d17 d16 d15 d14 d13 d12 d11 d10 d9 d8 d7 d6 d5 d4 d3 d2 d1 d0 d_bar255 d_bar254 d_bar253 d_bar252 d_bar251 d_bar250 d_bar249 d_bar248 d_bar247 d_bar246 d_bar245 d_bar244 d_bar243 d_bar242 d_bar241 d_bar240 d_bar239 d_bar238 d_bar237 d_bar236 d_bar235 d_bar234 d_bar233 d_bar232 d_bar231 d_bar230 d_bar229 d_bar228 d_bar227 d_bar226 d_bar225 d_bar224 d_bar223 d_bar222 d_bar221 d_bar220 d_bar219 d_bar218 d_bar217 d_bar216 d_bar215 d_bar214 d_bar213 d_bar212 d_bar211 d_bar210 d_bar209 d_bar208 d_bar207 d_bar206 d_bar205 d_bar204 d_bar203 d_bar202 d_bar201 d_bar200 d_bar199 d_bar198 d_bar197 d_bar196 d_bar195 d_bar194 d_bar193 d_bar192 d_bar191 d_bar190 d_bar189 d_bar188 d_bar187 d_bar186 d_bar185 d_bar184 d_bar183 d_bar182 d_bar181 d_bar180 d_bar179 d_bar178 d_bar177 d_bar176 d_bar175 d_bar174 d_bar173 d_bar172 d_bar171 d_bar170 d_bar169 d_bar168 d_bar167 d_bar166 d_bar165 d_bar164 d_bar163 d_bar162 d_bar161 d_bar160 d_bar159 d_bar158 d_bar157 d_bar156 d_bar155 d_bar154 d_bar153 d_bar152 d_bar151 d_bar150 d_bar149 d_bar148 d_bar147 d_bar146 d_bar145 d_bar144 d_bar143 d_bar142 d_bar141 d_bar140 d_bar139 d_bar138 d_bar137 d_bar136 d_bar135 d_bar134 d_bar133 d_bar132 d_bar131 d_bar130 d_bar129 d_bar128 d_bar127 d_bar126 d_bar125 d_bar124 d_bar123 d_bar122 d_bar121 d_bar120 d_bar119 d_bar118 d_bar117 d_bar116 d_bar115 d_bar114 d_bar113 d_bar112 d_bar111 d_bar110 d_bar109 d_bar108 d_bar107 d_bar106 d_bar105 d_bar104 d_bar103 d_bar102 d_bar101 d_bar100 d_bar99 d_bar98 d_bar97 d_bar96 d_bar95 d_bar94 d_bar93 d_bar92 d_bar91 d_bar90 d_bar89 d_bar88 d_bar87 d_bar86 d_bar85 d_bar84 d_bar83 d_bar82 d_bar81 d_bar80 d_bar79 d_bar78 d_bar77 d_bar76 d_bar75 d_bar74 d_bar73 d_bar72 d_bar71 d_bar70 d_bar69 d_bar68 d_bar67 d_bar66 d_bar65 d_bar64 d_bar63 d_bar62 d_bar61 d_bar60 d_bar59 d_bar58 d_bar57 d_bar56 d_bar55 d_bar54 d_bar53 d_bar52 d_bar51 d_bar50 d_bar49 d_bar48 d_bar47 d_bar46 d_bar45 d_bar44 d_bar43 d_bar42 d_bar41 d_bar40 d_bar39 d_bar38 d_bar37 d_bar36 d_bar35 d_bar34 d_bar33 d_bar32 d_bar31 d_bar30 d_bar29 d_bar28 d_bar27 d_bar26 d_bar25 d_bar24 d_bar23 d_bar22 d_bar21 d_bar20 d_bar19 d_bar18 d_bar17 d_bar16 d_bar15 d_bar14 d_bar13 d_bar12 d_bar11 d_bar10 d_bar9 d_bar8 d_bar7 d_bar6 d_bar5 d_bar4 d_bar3 d_bar2 d_bar1 d_bar0 b255 b254 b253 b252 b251 b250 b249 b248 b247 b246 b245 b244 b243 b242 b241 b240 b239 b238 b237 b236 b235 b234 b233 b232 b231 b230 b229 b228 b227 b226 b225 b224 b223 b222 b221 b220 b219 b218 b217 b216 b215 b214 b213 b212 b211 b210 b209 b208 b207 b206 b205 b204 b203 b202 b201 b200 b199 b198 b197 b196 b195 b194 b193 b192 b191 b190 b189 b188 b187 b186 b185 b184 b183 b182 b181 b180 b179 b178 b177 b176 b175 b174 b173 b172 b171 b170 b169 b168 b167 b166 b165 b164 b163 b162 b161 b160 b159 b158 b157 b156 b155 b154 b153 b152 b151 b150 b149 b148 b147 b146 b145 b144 b143 b142 b141 b140 b139 b138 b137 b136 b135 b134 b133 b132 b131 b130 b129 b128 b127 b126 b125 b124 b123 b122 b121 b120 b119 b118 b117 b116 b115 b114 b113 b112 b111 b110 b109 b108 b107 b106 b105 b104 b103 b102 b101 b100 b99 b98 b97 b96 b95 b94 b93 b92 b91 b90 b89 b88 b87 b86 b85 b84 b83 b82 b81 b80 b79 b78 b77 b76 b75 b74 b73 b72 b71 b70 b69 b68 b67 b66 b65 b64 b63 b62 b61 b60 b59 b58 b57 b56 b55 b54 b53 b52 b51 b50 b49 b48 b47 b46 b45 b44 b43 b42 b41 b40 b39 b38 b37 b36 b35 b34 b33 b32 b31 b30 b29 b28 b27 b26 b25 b24 b23 b22 b21 b20 b19 b18 b17 b16 b15 b14 b13 b12 b11 b10 b9 b8 b7 b6 b5 b4 b3 b2 b1 b0 b_bar255 b_bar254 b_bar253 b_bar252 b_bar251 b_bar250 b_bar249 b_bar248 b_bar247 b_bar246 b_bar245 b_bar244 b_bar243 b_bar242 b_bar241 b_bar240 b_bar239 b_bar238 b_bar237 b_bar236 b_bar235 b_bar234 b_bar233 b_bar232 b_bar231 b_bar230 b_bar229 b_bar228 b_bar227 b_bar226 b_bar225 b_bar224 b_bar223 b_bar222 b_bar221 b_bar220 b_bar219 b_bar218 b_bar217 b_bar216 b_bar215 b_bar214 b_bar213 b_bar212 b_bar211 b_bar210 b_bar209 b_bar208 b_bar207 b_bar206 b_bar205 b_bar204 b_bar203 b_bar202 b_bar201 b_bar200 b_bar199 b_bar198 b_bar197 b_bar196 b_bar195 b_bar194 b_bar193 b_bar192 b_bar191 b_bar190 b_bar189 b_bar188 b_bar187 b_bar186 b_bar185 b_bar184 b_bar183 b_bar182 b_bar181 b_bar180 b_bar179 b_bar178 b_bar177 b_bar176 b_bar175 b_bar174 b_bar173 b_bar172 b_bar171 b_bar170 b_bar169 b_bar168 b_bar167 b_bar166 b_bar165 b_bar164 b_bar163 b_bar162 b_bar161 b_bar160 b_bar159 b_bar158 b_bar157 b_bar156 b_bar155 b_bar154 b_bar153 b_bar152 b_bar151 b_bar150 b_bar149 b_bar148 b_bar147 b_bar146 b_bar145 b_bar144 b_bar143 b_bar142 b_bar141 b_bar140 b_bar139 b_bar138 b_bar137 b_bar136 b_bar135 b_bar134 b_bar133 b_bar132 b_bar131 b_bar130 b_bar129 b_bar128 b_bar127 b_bar126 b_bar125 b_bar124 b_bar123 b_bar122 b_bar121 b_bar120 b_bar119 b_bar118 b_bar117 b_bar116 b_bar115 b_bar114 b_bar113 b_bar112 b_bar111 b_bar110 b_bar109 b_bar108 b_bar107 b_bar106 b_bar105 b_bar104 b_bar103 b_bar102 b_bar101 b_bar100 b_bar99 b_bar98 b_bar97 b_bar96 b_bar95 b_bar94 b_bar93 b_bar92 b_bar91 b_bar90 b_bar89 b_bar88 b_bar87 b_bar86 b_bar85 b_bar84 b_bar83 b_bar82 b_bar81 b_bar80 b_bar79 b_bar78 b_bar77 b_bar76 b_bar75 b_bar74 b_bar73 b_bar72 b_bar71 b_bar70 b_bar69 b_bar68 b_bar67 b_bar66 b_bar65 b_bar64 b_bar63 b_bar62 b_bar61 b_bar60 b_bar59 b_bar58 b_bar57 b_bar56 b_bar55 b_bar54 b_bar53 b_bar52 b_bar51 b_bar50 b_bar49 b_bar48 b_bar47 b_bar46 b_bar45 b_bar44 b_bar43 b_bar42 b_bar41 b_bar40 b_bar39 b_bar38 b_bar37 b_bar36 b_bar35 b_bar34 b_bar33 b_bar32 b_bar31 b_bar30 b_bar29 b_bar28 b_bar27 b_bar26 b_bar25 b_bar24 b_bar23 b_bar22 b_bar21 b_bar20 b_bar19 b_bar18 b_bar17 b_bar16 b_bar15 b_bar14 b_bar13 b_bar12 b_bar11 b_bar10 b_bar9 b_bar8 b_bar7 b_bar6 b_bar5 b_bar4 b_bar3 b_bar2 b_bar1 b_bar0 vdd gnd
+
+X255 col255 w d255 d_bar255 b255 b_bar255 vdd gnd WD
+X254 col254 w d254 d_bar254 b254 b_bar254 vdd gnd WD
+X253 col253 w d253 d_bar253 b253 b_bar253 vdd gnd WD
+X252 col252 w d252 d_bar252 b252 b_bar252 vdd gnd WD
+X251 col251 w d251 d_bar251 b251 b_bar251 vdd gnd WD
+X250 col250 w d250 d_bar250 b250 b_bar250 vdd gnd WD
+X249 col249 w d249 d_bar249 b249 b_bar249 vdd gnd WD
+X248 col248 w d248 d_bar248 b248 b_bar248 vdd gnd WD
+X247 col247 w d247 d_bar247 b247 b_bar247 vdd gnd WD
+X246 col246 w d246 d_bar246 b246 b_bar246 vdd gnd WD
+X245 col245 w d245 d_bar245 b245 b_bar245 vdd gnd WD
+X244 col244 w d244 d_bar244 b244 b_bar244 vdd gnd WD
+X243 col243 w d243 d_bar243 b243 b_bar243 vdd gnd WD
+X242 col242 w d242 d_bar242 b242 b_bar242 vdd gnd WD
+X241 col241 w d241 d_bar241 b241 b_bar241 vdd gnd WD
+X240 col240 w d240 d_bar240 b240 b_bar240 vdd gnd WD
+X239 col239 w d239 d_bar239 b239 b_bar239 vdd gnd WD
+X238 col238 w d238 d_bar238 b238 b_bar238 vdd gnd WD
+X237 col237 w d237 d_bar237 b237 b_bar237 vdd gnd WD
+X236 col236 w d236 d_bar236 b236 b_bar236 vdd gnd WD
+X235 col235 w d235 d_bar235 b235 b_bar235 vdd gnd WD
+X234 col234 w d234 d_bar234 b234 b_bar234 vdd gnd WD
+X233 col233 w d233 d_bar233 b233 b_bar233 vdd gnd WD
+X232 col232 w d232 d_bar232 b232 b_bar232 vdd gnd WD
+X231 col231 w d231 d_bar231 b231 b_bar231 vdd gnd WD
+X230 col230 w d230 d_bar230 b230 b_bar230 vdd gnd WD
+X229 col229 w d229 d_bar229 b229 b_bar229 vdd gnd WD
+X228 col228 w d228 d_bar228 b228 b_bar228 vdd gnd WD
+X227 col227 w d227 d_bar227 b227 b_bar227 vdd gnd WD
+X226 col226 w d226 d_bar226 b226 b_bar226 vdd gnd WD
+X225 col225 w d225 d_bar225 b225 b_bar225 vdd gnd WD
+X224 col224 w d224 d_bar224 b224 b_bar224 vdd gnd WD
+X223 col223 w d223 d_bar223 b223 b_bar223 vdd gnd WD
+X222 col222 w d222 d_bar222 b222 b_bar222 vdd gnd WD
+X221 col221 w d221 d_bar221 b221 b_bar221 vdd gnd WD
+X220 col220 w d220 d_bar220 b220 b_bar220 vdd gnd WD
+X219 col219 w d219 d_bar219 b219 b_bar219 vdd gnd WD
+X218 col218 w d218 d_bar218 b218 b_bar218 vdd gnd WD
+X217 col217 w d217 d_bar217 b217 b_bar217 vdd gnd WD
+X216 col216 w d216 d_bar216 b216 b_bar216 vdd gnd WD
+X215 col215 w d215 d_bar215 b215 b_bar215 vdd gnd WD
+X214 col214 w d214 d_bar214 b214 b_bar214 vdd gnd WD
+X213 col213 w d213 d_bar213 b213 b_bar213 vdd gnd WD
+X212 col212 w d212 d_bar212 b212 b_bar212 vdd gnd WD
+X211 col211 w d211 d_bar211 b211 b_bar211 vdd gnd WD
+X210 col210 w d210 d_bar210 b210 b_bar210 vdd gnd WD
+X209 col209 w d209 d_bar209 b209 b_bar209 vdd gnd WD
+X208 col208 w d208 d_bar208 b208 b_bar208 vdd gnd WD
+X207 col207 w d207 d_bar207 b207 b_bar207 vdd gnd WD
+X206 col206 w d206 d_bar206 b206 b_bar206 vdd gnd WD
+X205 col205 w d205 d_bar205 b205 b_bar205 vdd gnd WD
+X204 col204 w d204 d_bar204 b204 b_bar204 vdd gnd WD
+X203 col203 w d203 d_bar203 b203 b_bar203 vdd gnd WD
+X202 col202 w d202 d_bar202 b202 b_bar202 vdd gnd WD
+X201 col201 w d201 d_bar201 b201 b_bar201 vdd gnd WD
+X200 col200 w d200 d_bar200 b200 b_bar200 vdd gnd WD
+X199 col199 w d199 d_bar199 b199 b_bar199 vdd gnd WD
+X198 col198 w d198 d_bar198 b198 b_bar198 vdd gnd WD
+X197 col197 w d197 d_bar197 b197 b_bar197 vdd gnd WD
+X196 col196 w d196 d_bar196 b196 b_bar196 vdd gnd WD
+X195 col195 w d195 d_bar195 b195 b_bar195 vdd gnd WD
+X194 col194 w d194 d_bar194 b194 b_bar194 vdd gnd WD
+X193 col193 w d193 d_bar193 b193 b_bar193 vdd gnd WD
+X192 col192 w d192 d_bar192 b192 b_bar192 vdd gnd WD
+X191 col191 w d191 d_bar191 b191 b_bar191 vdd gnd WD
+X190 col190 w d190 d_bar190 b190 b_bar190 vdd gnd WD
+X189 col189 w d189 d_bar189 b189 b_bar189 vdd gnd WD
+X188 col188 w d188 d_bar188 b188 b_bar188 vdd gnd WD
+X187 col187 w d187 d_bar187 b187 b_bar187 vdd gnd WD
+X186 col186 w d186 d_bar186 b186 b_bar186 vdd gnd WD
+X185 col185 w d185 d_bar185 b185 b_bar185 vdd gnd WD
+X184 col184 w d184 d_bar184 b184 b_bar184 vdd gnd WD
+X183 col183 w d183 d_bar183 b183 b_bar183 vdd gnd WD
+X182 col182 w d182 d_bar182 b182 b_bar182 vdd gnd WD
+X181 col181 w d181 d_bar181 b181 b_bar181 vdd gnd WD
+X180 col180 w d180 d_bar180 b180 b_bar180 vdd gnd WD
+X179 col179 w d179 d_bar179 b179 b_bar179 vdd gnd WD
+X178 col178 w d178 d_bar178 b178 b_bar178 vdd gnd WD
+X177 col177 w d177 d_bar177 b177 b_bar177 vdd gnd WD
+X176 col176 w d176 d_bar176 b176 b_bar176 vdd gnd WD
+X175 col175 w d175 d_bar175 b175 b_bar175 vdd gnd WD
+X174 col174 w d174 d_bar174 b174 b_bar174 vdd gnd WD
+X173 col173 w d173 d_bar173 b173 b_bar173 vdd gnd WD
+X172 col172 w d172 d_bar172 b172 b_bar172 vdd gnd WD
+X171 col171 w d171 d_bar171 b171 b_bar171 vdd gnd WD
+X170 col170 w d170 d_bar170 b170 b_bar170 vdd gnd WD
+X169 col169 w d169 d_bar169 b169 b_bar169 vdd gnd WD
+X168 col168 w d168 d_bar168 b168 b_bar168 vdd gnd WD
+X167 col167 w d167 d_bar167 b167 b_bar167 vdd gnd WD
+X166 col166 w d166 d_bar166 b166 b_bar166 vdd gnd WD
+X165 col165 w d165 d_bar165 b165 b_bar165 vdd gnd WD
+X164 col164 w d164 d_bar164 b164 b_bar164 vdd gnd WD
+X163 col163 w d163 d_bar163 b163 b_bar163 vdd gnd WD
+X162 col162 w d162 d_bar162 b162 b_bar162 vdd gnd WD
+X161 col161 w d161 d_bar161 b161 b_bar161 vdd gnd WD
+X160 col160 w d160 d_bar160 b160 b_bar160 vdd gnd WD
+X159 col159 w d159 d_bar159 b159 b_bar159 vdd gnd WD
+X158 col158 w d158 d_bar158 b158 b_bar158 vdd gnd WD
+X157 col157 w d157 d_bar157 b157 b_bar157 vdd gnd WD
+X156 col156 w d156 d_bar156 b156 b_bar156 vdd gnd WD
+X155 col155 w d155 d_bar155 b155 b_bar155 vdd gnd WD
+X154 col154 w d154 d_bar154 b154 b_bar154 vdd gnd WD
+X153 col153 w d153 d_bar153 b153 b_bar153 vdd gnd WD
+X152 col152 w d152 d_bar152 b152 b_bar152 vdd gnd WD
+X151 col151 w d151 d_bar151 b151 b_bar151 vdd gnd WD
+X150 col150 w d150 d_bar150 b150 b_bar150 vdd gnd WD
+X149 col149 w d149 d_bar149 b149 b_bar149 vdd gnd WD
+X148 col148 w d148 d_bar148 b148 b_bar148 vdd gnd WD
+X147 col147 w d147 d_bar147 b147 b_bar147 vdd gnd WD
+X146 col146 w d146 d_bar146 b146 b_bar146 vdd gnd WD
+X145 col145 w d145 d_bar145 b145 b_bar145 vdd gnd WD
+X144 col144 w d144 d_bar144 b144 b_bar144 vdd gnd WD
+X143 col143 w d143 d_bar143 b143 b_bar143 vdd gnd WD
+X142 col142 w d142 d_bar142 b142 b_bar142 vdd gnd WD
+X141 col141 w d141 d_bar141 b141 b_bar141 vdd gnd WD
+X140 col140 w d140 d_bar140 b140 b_bar140 vdd gnd WD
+X139 col139 w d139 d_bar139 b139 b_bar139 vdd gnd WD
+X138 col138 w d138 d_bar138 b138 b_bar138 vdd gnd WD
+X137 col137 w d137 d_bar137 b137 b_bar137 vdd gnd WD
+X136 col136 w d136 d_bar136 b136 b_bar136 vdd gnd WD
+X135 col135 w d135 d_bar135 b135 b_bar135 vdd gnd WD
+X134 col134 w d134 d_bar134 b134 b_bar134 vdd gnd WD
+X133 col133 w d133 d_bar133 b133 b_bar133 vdd gnd WD
+X132 col132 w d132 d_bar132 b132 b_bar132 vdd gnd WD
+X131 col131 w d131 d_bar131 b131 b_bar131 vdd gnd WD
+X130 col130 w d130 d_bar130 b130 b_bar130 vdd gnd WD
+X129 col129 w d129 d_bar129 b129 b_bar129 vdd gnd WD
+X128 col128 w d128 d_bar128 b128 b_bar128 vdd gnd WD
+X127 col127 w d127 d_bar127 b127 b_bar127 vdd gnd WD
+X126 col126 w d126 d_bar126 b126 b_bar126 vdd gnd WD
+X125 col125 w d125 d_bar125 b125 b_bar125 vdd gnd WD
+X124 col124 w d124 d_bar124 b124 b_bar124 vdd gnd WD
+X123 col123 w d123 d_bar123 b123 b_bar123 vdd gnd WD
+X122 col122 w d122 d_bar122 b122 b_bar122 vdd gnd WD
+X121 col121 w d121 d_bar121 b121 b_bar121 vdd gnd WD
+X120 col120 w d120 d_bar120 b120 b_bar120 vdd gnd WD
+X119 col119 w d119 d_bar119 b119 b_bar119 vdd gnd WD
+X118 col118 w d118 d_bar118 b118 b_bar118 vdd gnd WD
+X117 col117 w d117 d_bar117 b117 b_bar117 vdd gnd WD
+X116 col116 w d116 d_bar116 b116 b_bar116 vdd gnd WD
+X115 col115 w d115 d_bar115 b115 b_bar115 vdd gnd WD
+X114 col114 w d114 d_bar114 b114 b_bar114 vdd gnd WD
+X113 col113 w d113 d_bar113 b113 b_bar113 vdd gnd WD
+X112 col112 w d112 d_bar112 b112 b_bar112 vdd gnd WD
+X111 col111 w d111 d_bar111 b111 b_bar111 vdd gnd WD
+X110 col110 w d110 d_bar110 b110 b_bar110 vdd gnd WD
+X109 col109 w d109 d_bar109 b109 b_bar109 vdd gnd WD
+X108 col108 w d108 d_bar108 b108 b_bar108 vdd gnd WD
+X107 col107 w d107 d_bar107 b107 b_bar107 vdd gnd WD
+X106 col106 w d106 d_bar106 b106 b_bar106 vdd gnd WD
+X105 col105 w d105 d_bar105 b105 b_bar105 vdd gnd WD
+X104 col104 w d104 d_bar104 b104 b_bar104 vdd gnd WD
+X103 col103 w d103 d_bar103 b103 b_bar103 vdd gnd WD
+X102 col102 w d102 d_bar102 b102 b_bar102 vdd gnd WD
+X101 col101 w d101 d_bar101 b101 b_bar101 vdd gnd WD
+X100 col100 w d100 d_bar100 b100 b_bar100 vdd gnd WD
+X99 col99 w d99 d_bar99 b99 b_bar99 vdd gnd WD
+X98 col98 w d98 d_bar98 b98 b_bar98 vdd gnd WD
+X97 col97 w d97 d_bar97 b97 b_bar97 vdd gnd WD
+X96 col96 w d96 d_bar96 b96 b_bar96 vdd gnd WD
+X95 col95 w d95 d_bar95 b95 b_bar95 vdd gnd WD
+X94 col94 w d94 d_bar94 b94 b_bar94 vdd gnd WD
+X93 col93 w d93 d_bar93 b93 b_bar93 vdd gnd WD
+X92 col92 w d92 d_bar92 b92 b_bar92 vdd gnd WD
+X91 col91 w d91 d_bar91 b91 b_bar91 vdd gnd WD
+X90 col90 w d90 d_bar90 b90 b_bar90 vdd gnd WD
+X89 col89 w d89 d_bar89 b89 b_bar89 vdd gnd WD
+X88 col88 w d88 d_bar88 b88 b_bar88 vdd gnd WD
+X87 col87 w d87 d_bar87 b87 b_bar87 vdd gnd WD
+X86 col86 w d86 d_bar86 b86 b_bar86 vdd gnd WD
+X85 col85 w d85 d_bar85 b85 b_bar85 vdd gnd WD
+X84 col84 w d84 d_bar84 b84 b_bar84 vdd gnd WD
+X83 col83 w d83 d_bar83 b83 b_bar83 vdd gnd WD
+X82 col82 w d82 d_bar82 b82 b_bar82 vdd gnd WD
+X81 col81 w d81 d_bar81 b81 b_bar81 vdd gnd WD
+X80 col80 w d80 d_bar80 b80 b_bar80 vdd gnd WD
+X79 col79 w d79 d_bar79 b79 b_bar79 vdd gnd WD
+X78 col78 w d78 d_bar78 b78 b_bar78 vdd gnd WD
+X77 col77 w d77 d_bar77 b77 b_bar77 vdd gnd WD
+X76 col76 w d76 d_bar76 b76 b_bar76 vdd gnd WD
+X75 col75 w d75 d_bar75 b75 b_bar75 vdd gnd WD
+X74 col74 w d74 d_bar74 b74 b_bar74 vdd gnd WD
+X73 col73 w d73 d_bar73 b73 b_bar73 vdd gnd WD
+X72 col72 w d72 d_bar72 b72 b_bar72 vdd gnd WD
+X71 col71 w d71 d_bar71 b71 b_bar71 vdd gnd WD
+X70 col70 w d70 d_bar70 b70 b_bar70 vdd gnd WD
+X69 col69 w d69 d_bar69 b69 b_bar69 vdd gnd WD
+X68 col68 w d68 d_bar68 b68 b_bar68 vdd gnd WD
+X67 col67 w d67 d_bar67 b67 b_bar67 vdd gnd WD
+X66 col66 w d66 d_bar66 b66 b_bar66 vdd gnd WD
+X65 col65 w d65 d_bar65 b65 b_bar65 vdd gnd WD
+X64 col64 w d64 d_bar64 b64 b_bar64 vdd gnd WD
+X63 col63 w d63 d_bar63 b63 b_bar63 vdd gnd WD
+X62 col62 w d62 d_bar62 b62 b_bar62 vdd gnd WD
+X61 col61 w d61 d_bar61 b61 b_bar61 vdd gnd WD
+X60 col60 w d60 d_bar60 b60 b_bar60 vdd gnd WD
+X59 col59 w d59 d_bar59 b59 b_bar59 vdd gnd WD
+X58 col58 w d58 d_bar58 b58 b_bar58 vdd gnd WD
+X57 col57 w d57 d_bar57 b57 b_bar57 vdd gnd WD
+X56 col56 w d56 d_bar56 b56 b_bar56 vdd gnd WD
+X55 col55 w d55 d_bar55 b55 b_bar55 vdd gnd WD
+X54 col54 w d54 d_bar54 b54 b_bar54 vdd gnd WD
+X53 col53 w d53 d_bar53 b53 b_bar53 vdd gnd WD
+X52 col52 w d52 d_bar52 b52 b_bar52 vdd gnd WD
+X51 col51 w d51 d_bar51 b51 b_bar51 vdd gnd WD
+X50 col50 w d50 d_bar50 b50 b_bar50 vdd gnd WD
+X49 col49 w d49 d_bar49 b49 b_bar49 vdd gnd WD
+X48 col48 w d48 d_bar48 b48 b_bar48 vdd gnd WD
+X47 col47 w d47 d_bar47 b47 b_bar47 vdd gnd WD
+X46 col46 w d46 d_bar46 b46 b_bar46 vdd gnd WD
+X45 col45 w d45 d_bar45 b45 b_bar45 vdd gnd WD
+X44 col44 w d44 d_bar44 b44 b_bar44 vdd gnd WD
+X43 col43 w d43 d_bar43 b43 b_bar43 vdd gnd WD
+X42 col42 w d42 d_bar42 b42 b_bar42 vdd gnd WD
+X41 col41 w d41 d_bar41 b41 b_bar41 vdd gnd WD
+X40 col40 w d40 d_bar40 b40 b_bar40 vdd gnd WD
+X39 col39 w d39 d_bar39 b39 b_bar39 vdd gnd WD
+X38 col38 w d38 d_bar38 b38 b_bar38 vdd gnd WD
+X37 col37 w d37 d_bar37 b37 b_bar37 vdd gnd WD
+X36 col36 w d36 d_bar36 b36 b_bar36 vdd gnd WD
+X35 col35 w d35 d_bar35 b35 b_bar35 vdd gnd WD
+X34 col34 w d34 d_bar34 b34 b_bar34 vdd gnd WD
+X33 col33 w d33 d_bar33 b33 b_bar33 vdd gnd WD
+X32 col32 w d32 d_bar32 b32 b_bar32 vdd gnd WD
+X31 col31 w d31 d_bar31 b31 b_bar31 vdd gnd WD
+X30 col30 w d30 d_bar30 b30 b_bar30 vdd gnd WD
+X29 col29 w d29 d_bar29 b29 b_bar29 vdd gnd WD
+X28 col28 w d28 d_bar28 b28 b_bar28 vdd gnd WD
+X27 col27 w d27 d_bar27 b27 b_bar27 vdd gnd WD
+X26 col26 w d26 d_bar26 b26 b_bar26 vdd gnd WD
+X25 col25 w d25 d_bar25 b25 b_bar25 vdd gnd WD
+X24 col24 w d24 d_bar24 b24 b_bar24 vdd gnd WD
+X23 col23 w d23 d_bar23 b23 b_bar23 vdd gnd WD
+X22 col22 w d22 d_bar22 b22 b_bar22 vdd gnd WD
+X21 col21 w d21 d_bar21 b21 b_bar21 vdd gnd WD
+X20 col20 w d20 d_bar20 b20 b_bar20 vdd gnd WD
+X19 col19 w d19 d_bar19 b19 b_bar19 vdd gnd WD
+X18 col18 w d18 d_bar18 b18 b_bar18 vdd gnd WD
+X17 col17 w d17 d_bar17 b17 b_bar17 vdd gnd WD
+X16 col16 w d16 d_bar16 b16 b_bar16 vdd gnd WD
+X15 col15 w d15 d_bar15 b15 b_bar15 vdd gnd WD
+X14 col14 w d14 d_bar14 b14 b_bar14 vdd gnd WD
+X13 col13 w d13 d_bar13 b13 b_bar13 vdd gnd WD
+X12 col12 w d12 d_bar12 b12 b_bar12 vdd gnd WD
+X11 col11 w d11 d_bar11 b11 b_bar11 vdd gnd WD
+X10 col10 w d10 d_bar10 b10 b_bar10 vdd gnd WD
+X9 col9 w d9 d_bar9 b9 b_bar9 vdd gnd WD
+X8 col8 w d8 d_bar8 b8 b_bar8 vdd gnd WD
+X7 col7 w d7 d_bar7 b7 b_bar7 vdd gnd WD
+X6 col6 w d6 d_bar6 b6 b_bar6 vdd gnd WD
+X5 col5 w d5 d_bar5 b5 b_bar5 vdd gnd WD
+X4 col4 w d4 d_bar4 b4 b_bar4 vdd gnd WD
+X3 col3 w d3 d_bar3 b3 b_bar3 vdd gnd WD
+X2 col2 w d2 d_bar2 b2 b_bar2 vdd gnd WD
+X1 col1 w d1 d_bar1 b1 b_bar1 vdd gnd WD
+X0 col0 w d0 d_bar0 b0 b_bar0 vdd gnd WD
+
+.ends WD_array
+
+* define PC array subcircuit - pc b bbar vdd gnd
+.subckt PC_array pc b255 b254 b253 b252 b251 b250 b249 b248 b247 b246 b245 b244 b243 b242 b241 b240 b239 b238 b237 b236 b235 b234 b233 b232 b231 b230 b229 b228 b227 b226 b225 b224 b223 b222 b221 b220 b219 b218 b217 b216 b215 b214 b213 b212 b211 b210 b209 b208 b207 b206 b205 b204 b203 b202 b201 b200 b199 b198 b197 b196 b195 b194 b193 b192 b191 b190 b189 b188 b187 b186 b185 b184 b183 b182 b181 b180 b179 b178 b177 b176 b175 b174 b173 b172 b171 b170 b169 b168 b167 b166 b165 b164 b163 b162 b161 b160 b159 b158 b157 b156 b155 b154 b153 b152 b151 b150 b149 b148 b147 b146 b145 b144 b143 b142 b141 b140 b139 b138 b137 b136 b135 b134 b133 b132 b131 b130 b129 b128 b127 b126 b125 b124 b123 b122 b121 b120 b119 b118 b117 b116 b115 b114 b113 b112 b111 b110 b109 b108 b107 b106 b105 b104 b103 b102 b101 b100 b99 b98 b97 b96 b95 b94 b93 b92 b91 b90 b89 b88 b87 b86 b85 b84 b83 b82 b81 b80 b79 b78 b77 b76 b75 b74 b73 b72 b71 b70 b69 b68 b67 b66 b65 b64 b63 b62 b61 b60 b59 b58 b57 b56 b55 b54 b53 b52 b51 b50 b49 b48 b47 b46 b45 b44 b43 b42 b41 b40 b39 b38 b37 b36 b35 b34 b33 b32 b31 b30 b29 b28 b27 b26 b25 b24 b23 b22 b21 b20 b19 b18 b17 b16 b15 b14 b13 b12 b11 b10 b9 b8 b7 b6 b5 b4 b3 b2 b1 b0 b_bar255 b_bar254 b_bar253 b_bar252 b_bar251 b_bar250 b_bar249 b_bar248 b_bar247 b_bar246 b_bar245 b_bar244 b_bar243 b_bar242 b_bar241 b_bar240 b_bar239 b_bar238 b_bar237 b_bar236 b_bar235 b_bar234 b_bar233 b_bar232 b_bar231 b_bar230 b_bar229 b_bar228 b_bar227 b_bar226 b_bar225 b_bar224 b_bar223 b_bar222 b_bar221 b_bar220 b_bar219 b_bar218 b_bar217 b_bar216 b_bar215 b_bar214 b_bar213 b_bar212 b_bar211 b_bar210 b_bar209 b_bar208 b_bar207 b_bar206 b_bar205 b_bar204 b_bar203 b_bar202 b_bar201 b_bar200 b_bar199 b_bar198 b_bar197 b_bar196 b_bar195 b_bar194 b_bar193 b_bar192 b_bar191 b_bar190 b_bar189 b_bar188 b_bar187 b_bar186 b_bar185 b_bar184 b_bar183 b_bar182 b_bar181 b_bar180 b_bar179 b_bar178 b_bar177 b_bar176 b_bar175 b_bar174 b_bar173 b_bar172 b_bar171 b_bar170 b_bar169 b_bar168 b_bar167 b_bar166 b_bar165 b_bar164 b_bar163 b_bar162 b_bar161 b_bar160 b_bar159 b_bar158 b_bar157 b_bar156 b_bar155 b_bar154 b_bar153 b_bar152 b_bar151 b_bar150 b_bar149 b_bar148 b_bar147 b_bar146 b_bar145 b_bar144 b_bar143 b_bar142 b_bar141 b_bar140 b_bar139 b_bar138 b_bar137 b_bar136 b_bar135 b_bar134 b_bar133 b_bar132 b_bar131 b_bar130 b_bar129 b_bar128 b_bar127 b_bar126 b_bar125 b_bar124 b_bar123 b_bar122 b_bar121 b_bar120 b_bar119 b_bar118 b_bar117 b_bar116 b_bar115 b_bar114 b_bar113 b_bar112 b_bar111 b_bar110 b_bar109 b_bar108 b_bar107 b_bar106 b_bar105 b_bar104 b_bar103 b_bar102 b_bar101 b_bar100 b_bar99 b_bar98 b_bar97 b_bar96 b_bar95 b_bar94 b_bar93 b_bar92 b_bar91 b_bar90 b_bar89 b_bar88 b_bar87 b_bar86 b_bar85 b_bar84 b_bar83 b_bar82 b_bar81 b_bar80 b_bar79 b_bar78 b_bar77 b_bar76 b_bar75 b_bar74 b_bar73 b_bar72 b_bar71 b_bar70 b_bar69 b_bar68 b_bar67 b_bar66 b_bar65 b_bar64 b_bar63 b_bar62 b_bar61 b_bar60 b_bar59 b_bar58 b_bar57 b_bar56 b_bar55 b_bar54 b_bar53 b_bar52 b_bar51 b_bar50 b_bar49 b_bar48 b_bar47 b_bar46 b_bar45 b_bar44 b_bar43 b_bar42 b_bar41 b_bar40 b_bar39 b_bar38 b_bar37 b_bar36 b_bar35 b_bar34 b_bar33 b_bar32 b_bar31 b_bar30 b_bar29 b_bar28 b_bar27 b_bar26 b_bar25 b_bar24 b_bar23 b_bar22 b_bar21 b_bar20 b_bar19 b_bar18 b_bar17 b_bar16 b_bar15 b_bar14 b_bar13 b_bar12 b_bar11 b_bar10 b_bar9 b_bar8 b_bar7 b_bar6 b_bar5 b_bar4 b_bar3 b_bar2 b_bar1 b_bar0 vdd gnd
+
+X255 pc b255 b_bar255 vdd gnd PC
+X254 pc b254 b_bar254 vdd gnd PC
+X253 pc b253 b_bar253 vdd gnd PC
+X252 pc b252 b_bar252 vdd gnd PC
+X251 pc b251 b_bar251 vdd gnd PC
+X250 pc b250 b_bar250 vdd gnd PC
+X249 pc b249 b_bar249 vdd gnd PC
+X248 pc b248 b_bar248 vdd gnd PC
+X247 pc b247 b_bar247 vdd gnd PC
+X246 pc b246 b_bar246 vdd gnd PC
+X245 pc b245 b_bar245 vdd gnd PC
+X244 pc b244 b_bar244 vdd gnd PC
+X243 pc b243 b_bar243 vdd gnd PC
+X242 pc b242 b_bar242 vdd gnd PC
+X241 pc b241 b_bar241 vdd gnd PC
+X240 pc b240 b_bar240 vdd gnd PC
+X239 pc b239 b_bar239 vdd gnd PC
+X238 pc b238 b_bar238 vdd gnd PC
+X237 pc b237 b_bar237 vdd gnd PC
+X236 pc b236 b_bar236 vdd gnd PC
+X235 pc b235 b_bar235 vdd gnd PC
+X234 pc b234 b_bar234 vdd gnd PC
+X233 pc b233 b_bar233 vdd gnd PC
+X232 pc b232 b_bar232 vdd gnd PC
+X231 pc b231 b_bar231 vdd gnd PC
+X230 pc b230 b_bar230 vdd gnd PC
+X229 pc b229 b_bar229 vdd gnd PC
+X228 pc b228 b_bar228 vdd gnd PC
+X227 pc b227 b_bar227 vdd gnd PC
+X226 pc b226 b_bar226 vdd gnd PC
+X225 pc b225 b_bar225 vdd gnd PC
+X224 pc b224 b_bar224 vdd gnd PC
+X223 pc b223 b_bar223 vdd gnd PC
+X222 pc b222 b_bar222 vdd gnd PC
+X221 pc b221 b_bar221 vdd gnd PC
+X220 pc b220 b_bar220 vdd gnd PC
+X219 pc b219 b_bar219 vdd gnd PC
+X218 pc b218 b_bar218 vdd gnd PC
+X217 pc b217 b_bar217 vdd gnd PC
+X216 pc b216 b_bar216 vdd gnd PC
+X215 pc b215 b_bar215 vdd gnd PC
+X214 pc b214 b_bar214 vdd gnd PC
+X213 pc b213 b_bar213 vdd gnd PC
+X212 pc b212 b_bar212 vdd gnd PC
+X211 pc b211 b_bar211 vdd gnd PC
+X210 pc b210 b_bar210 vdd gnd PC
+X209 pc b209 b_bar209 vdd gnd PC
+X208 pc b208 b_bar208 vdd gnd PC
+X207 pc b207 b_bar207 vdd gnd PC
+X206 pc b206 b_bar206 vdd gnd PC
+X205 pc b205 b_bar205 vdd gnd PC
+X204 pc b204 b_bar204 vdd gnd PC
+X203 pc b203 b_bar203 vdd gnd PC
+X202 pc b202 b_bar202 vdd gnd PC
+X201 pc b201 b_bar201 vdd gnd PC
+X200 pc b200 b_bar200 vdd gnd PC
+X199 pc b199 b_bar199 vdd gnd PC
+X198 pc b198 b_bar198 vdd gnd PC
+X197 pc b197 b_bar197 vdd gnd PC
+X196 pc b196 b_bar196 vdd gnd PC
+X195 pc b195 b_bar195 vdd gnd PC
+X194 pc b194 b_bar194 vdd gnd PC
+X193 pc b193 b_bar193 vdd gnd PC
+X192 pc b192 b_bar192 vdd gnd PC
+X191 pc b191 b_bar191 vdd gnd PC
+X190 pc b190 b_bar190 vdd gnd PC
+X189 pc b189 b_bar189 vdd gnd PC
+X188 pc b188 b_bar188 vdd gnd PC
+X187 pc b187 b_bar187 vdd gnd PC
+X186 pc b186 b_bar186 vdd gnd PC
+X185 pc b185 b_bar185 vdd gnd PC
+X184 pc b184 b_bar184 vdd gnd PC
+X183 pc b183 b_bar183 vdd gnd PC
+X182 pc b182 b_bar182 vdd gnd PC
+X181 pc b181 b_bar181 vdd gnd PC
+X180 pc b180 b_bar180 vdd gnd PC
+X179 pc b179 b_bar179 vdd gnd PC
+X178 pc b178 b_bar178 vdd gnd PC
+X177 pc b177 b_bar177 vdd gnd PC
+X176 pc b176 b_bar176 vdd gnd PC
+X175 pc b175 b_bar175 vdd gnd PC
+X174 pc b174 b_bar174 vdd gnd PC
+X173 pc b173 b_bar173 vdd gnd PC
+X172 pc b172 b_bar172 vdd gnd PC
+X171 pc b171 b_bar171 vdd gnd PC
+X170 pc b170 b_bar170 vdd gnd PC
+X169 pc b169 b_bar169 vdd gnd PC
+X168 pc b168 b_bar168 vdd gnd PC
+X167 pc b167 b_bar167 vdd gnd PC
+X166 pc b166 b_bar166 vdd gnd PC
+X165 pc b165 b_bar165 vdd gnd PC
+X164 pc b164 b_bar164 vdd gnd PC
+X163 pc b163 b_bar163 vdd gnd PC
+X162 pc b162 b_bar162 vdd gnd PC
+X161 pc b161 b_bar161 vdd gnd PC
+X160 pc b160 b_bar160 vdd gnd PC
+X159 pc b159 b_bar159 vdd gnd PC
+X158 pc b158 b_bar158 vdd gnd PC
+X157 pc b157 b_bar157 vdd gnd PC
+X156 pc b156 b_bar156 vdd gnd PC
+X155 pc b155 b_bar155 vdd gnd PC
+X154 pc b154 b_bar154 vdd gnd PC
+X153 pc b153 b_bar153 vdd gnd PC
+X152 pc b152 b_bar152 vdd gnd PC
+X151 pc b151 b_bar151 vdd gnd PC
+X150 pc b150 b_bar150 vdd gnd PC
+X149 pc b149 b_bar149 vdd gnd PC
+X148 pc b148 b_bar148 vdd gnd PC
+X147 pc b147 b_bar147 vdd gnd PC
+X146 pc b146 b_bar146 vdd gnd PC
+X145 pc b145 b_bar145 vdd gnd PC
+X144 pc b144 b_bar144 vdd gnd PC
+X143 pc b143 b_bar143 vdd gnd PC
+X142 pc b142 b_bar142 vdd gnd PC
+X141 pc b141 b_bar141 vdd gnd PC
+X140 pc b140 b_bar140 vdd gnd PC
+X139 pc b139 b_bar139 vdd gnd PC
+X138 pc b138 b_bar138 vdd gnd PC
+X137 pc b137 b_bar137 vdd gnd PC
+X136 pc b136 b_bar136 vdd gnd PC
+X135 pc b135 b_bar135 vdd gnd PC
+X134 pc b134 b_bar134 vdd gnd PC
+X133 pc b133 b_bar133 vdd gnd PC
+X132 pc b132 b_bar132 vdd gnd PC
+X131 pc b131 b_bar131 vdd gnd PC
+X130 pc b130 b_bar130 vdd gnd PC
+X129 pc b129 b_bar129 vdd gnd PC
+X128 pc b128 b_bar128 vdd gnd PC
+X127 pc b127 b_bar127 vdd gnd PC
+X126 pc b126 b_bar126 vdd gnd PC
+X125 pc b125 b_bar125 vdd gnd PC
+X124 pc b124 b_bar124 vdd gnd PC
+X123 pc b123 b_bar123 vdd gnd PC
+X122 pc b122 b_bar122 vdd gnd PC
+X121 pc b121 b_bar121 vdd gnd PC
+X120 pc b120 b_bar120 vdd gnd PC
+X119 pc b119 b_bar119 vdd gnd PC
+X118 pc b118 b_bar118 vdd gnd PC
+X117 pc b117 b_bar117 vdd gnd PC
+X116 pc b116 b_bar116 vdd gnd PC
+X115 pc b115 b_bar115 vdd gnd PC
+X114 pc b114 b_bar114 vdd gnd PC
+X113 pc b113 b_bar113 vdd gnd PC
+X112 pc b112 b_bar112 vdd gnd PC
+X111 pc b111 b_bar111 vdd gnd PC
+X110 pc b110 b_bar110 vdd gnd PC
+X109 pc b109 b_bar109 vdd gnd PC
+X108 pc b108 b_bar108 vdd gnd PC
+X107 pc b107 b_bar107 vdd gnd PC
+X106 pc b106 b_bar106 vdd gnd PC
+X105 pc b105 b_bar105 vdd gnd PC
+X104 pc b104 b_bar104 vdd gnd PC
+X103 pc b103 b_bar103 vdd gnd PC
+X102 pc b102 b_bar102 vdd gnd PC
+X101 pc b101 b_bar101 vdd gnd PC
+X100 pc b100 b_bar100 vdd gnd PC
+X99 pc b99 b_bar99 vdd gnd PC
+X98 pc b98 b_bar98 vdd gnd PC
+X97 pc b97 b_bar97 vdd gnd PC
+X96 pc b96 b_bar96 vdd gnd PC
+X95 pc b95 b_bar95 vdd gnd PC
+X94 pc b94 b_bar94 vdd gnd PC
+X93 pc b93 b_bar93 vdd gnd PC
+X92 pc b92 b_bar92 vdd gnd PC
+X91 pc b91 b_bar91 vdd gnd PC
+X90 pc b90 b_bar90 vdd gnd PC
+X89 pc b89 b_bar89 vdd gnd PC
+X88 pc b88 b_bar88 vdd gnd PC
+X87 pc b87 b_bar87 vdd gnd PC
+X86 pc b86 b_bar86 vdd gnd PC
+X85 pc b85 b_bar85 vdd gnd PC
+X84 pc b84 b_bar84 vdd gnd PC
+X83 pc b83 b_bar83 vdd gnd PC
+X82 pc b82 b_bar82 vdd gnd PC
+X81 pc b81 b_bar81 vdd gnd PC
+X80 pc b80 b_bar80 vdd gnd PC
+X79 pc b79 b_bar79 vdd gnd PC
+X78 pc b78 b_bar78 vdd gnd PC
+X77 pc b77 b_bar77 vdd gnd PC
+X76 pc b76 b_bar76 vdd gnd PC
+X75 pc b75 b_bar75 vdd gnd PC
+X74 pc b74 b_bar74 vdd gnd PC
+X73 pc b73 b_bar73 vdd gnd PC
+X72 pc b72 b_bar72 vdd gnd PC
+X71 pc b71 b_bar71 vdd gnd PC
+X70 pc b70 b_bar70 vdd gnd PC
+X69 pc b69 b_bar69 vdd gnd PC
+X68 pc b68 b_bar68 vdd gnd PC
+X67 pc b67 b_bar67 vdd gnd PC
+X66 pc b66 b_bar66 vdd gnd PC
+X65 pc b65 b_bar65 vdd gnd PC
+X64 pc b64 b_bar64 vdd gnd PC
+X63 pc b63 b_bar63 vdd gnd PC
+X62 pc b62 b_bar62 vdd gnd PC
+X61 pc b61 b_bar61 vdd gnd PC
+X60 pc b60 b_bar60 vdd gnd PC
+X59 pc b59 b_bar59 vdd gnd PC
+X58 pc b58 b_bar58 vdd gnd PC
+X57 pc b57 b_bar57 vdd gnd PC
+X56 pc b56 b_bar56 vdd gnd PC
+X55 pc b55 b_bar55 vdd gnd PC
+X54 pc b54 b_bar54 vdd gnd PC
+X53 pc b53 b_bar53 vdd gnd PC
+X52 pc b52 b_bar52 vdd gnd PC
+X51 pc b51 b_bar51 vdd gnd PC
+X50 pc b50 b_bar50 vdd gnd PC
+X49 pc b49 b_bar49 vdd gnd PC
+X48 pc b48 b_bar48 vdd gnd PC
+X47 pc b47 b_bar47 vdd gnd PC
+X46 pc b46 b_bar46 vdd gnd PC
+X45 pc b45 b_bar45 vdd gnd PC
+X44 pc b44 b_bar44 vdd gnd PC
+X43 pc b43 b_bar43 vdd gnd PC
+X42 pc b42 b_bar42 vdd gnd PC
+X41 pc b41 b_bar41 vdd gnd PC
+X40 pc b40 b_bar40 vdd gnd PC
+X39 pc b39 b_bar39 vdd gnd PC
+X38 pc b38 b_bar38 vdd gnd PC
+X37 pc b37 b_bar37 vdd gnd PC
+X36 pc b36 b_bar36 vdd gnd PC
+X35 pc b35 b_bar35 vdd gnd PC
+X34 pc b34 b_bar34 vdd gnd PC
+X33 pc b33 b_bar33 vdd gnd PC
+X32 pc b32 b_bar32 vdd gnd PC
+X31 pc b31 b_bar31 vdd gnd PC
+X30 pc b30 b_bar30 vdd gnd PC
+X29 pc b29 b_bar29 vdd gnd PC
+X28 pc b28 b_bar28 vdd gnd PC
+X27 pc b27 b_bar27 vdd gnd PC
+X26 pc b26 b_bar26 vdd gnd PC
+X25 pc b25 b_bar25 vdd gnd PC
+X24 pc b24 b_bar24 vdd gnd PC
+X23 pc b23 b_bar23 vdd gnd PC
+X22 pc b22 b_bar22 vdd gnd PC
+X21 pc b21 b_bar21 vdd gnd PC
+X20 pc b20 b_bar20 vdd gnd PC
+X19 pc b19 b_bar19 vdd gnd PC
+X18 pc b18 b_bar18 vdd gnd PC
+X17 pc b17 b_bar17 vdd gnd PC
+X16 pc b16 b_bar16 vdd gnd PC
+X15 pc b15 b_bar15 vdd gnd PC
+X14 pc b14 b_bar14 vdd gnd PC
+X13 pc b13 b_bar13 vdd gnd PC
+X12 pc b12 b_bar12 vdd gnd PC
+X11 pc b11 b_bar11 vdd gnd PC
+X10 pc b10 b_bar10 vdd gnd PC
+X9 pc b9 b_bar9 vdd gnd PC
+X8 pc b8 b_bar8 vdd gnd PC
+X7 pc b7 b_bar7 vdd gnd PC
+X6 pc b6 b_bar6 vdd gnd PC
+X5 pc b5 b_bar5 vdd gnd PC
+X4 pc b4 b_bar4 vdd gnd PC
+X3 pc b3 b_bar3 vdd gnd PC
+X2 pc b2 b_bar2 vdd gnd PC
+X1 pc b1 b_bar1 vdd gnd PC
+X0 pc b0 b_bar0 vdd gnd PC
+
+.ends PC_array
+
