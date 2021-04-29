@@ -1,7 +1,7 @@
 *SRAM array Subcircuit
 
 * Models
-.INCLUDE ./180nm-PTM-BSIM3-Bulk-CMOS-V0-L49-2001.txt
+*.INCLUDE ./180nm-PTM-BSIM3-Bulk-CMOS-V0-L49-2001.txt
 
 * SRAM cell
 .subckt sram_cell b b_bar wl vdd gnd

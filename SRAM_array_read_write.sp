@@ -5,16 +5,47 @@ SRAM Cell Subcircuit
 .include ./SA_array.txt
 .include ./col_devices_array.txt
 
+* Parameters
+.param p = 2N
+.param dt = 10P
 
 * Voltage Sources
 Vpwr vdd gnd 1.8
-Vwl wl0 gnd pwl 0 0 500N 0 501N 1.8 1U 1.8 1.001U 0 2U 0
+Vpc pc gnd pwl 0 0 p 0 'p+dt' 1.8 350N 1.8 351N 0 450N 0 451N 1.8
+Vw w gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 300N 1.8 301N 0 
+Vd0 d0 gnd pwl 0 0 150N 0 151N 1.8 300N 1.8 301N 0
+Vd1 d1 gnd 0
+Vd2 d2 gnd pwl 0 0 150N 0 151N 1.8 300N 1.8 301N 0
+Vd3 d3 gnd 0
+Vd4 d4 gnd pwl 0 0 150N 0 151N 1.8 300N 1.8 301N 0
+Vd5 d5 gnd 0
+Vd6 d6 gnd pwl 0 0 150N 0 151N 1.8 300N 1.8 301N 0
+Vd7 d7 gnd 0
+Vd_bar0 d_bar0 0
+Vd_bar1 d_bar1 gnd pwl 0 0 150N 0 151N 1.8 300N 1.8 301N 0
+Vd_bar2 d_bar2 0
+Vd_bar3 d_bar3 gnd pwl 0 0 150N 0 151N 1.8 300N 1.8 301N 0
+Vd_bar4 d_bar4 0
+Vd_bar5 d_bar5 gnd pwl 0 0 150N 0 151N 1.8 300N 1.8 301N 0
+Vd_bar6 d_bar6 0
+Vd_bar7 d_bar7 gnd pwl 0 0 150N 0 151N 1.8 300N 1.8 301N 0
+Vcol0 col0 gnd pwl 0 0 200N 0 201N 1.8 300N 1.8 301N 0 550N 0 551N 1.8
+Vcol1 col1 gnd pwl 0 0 200N 0 201N 1.8 300N 1.8 301N 0 550N 0 551N 1.8
+Vcol2 col2 gnd pwl 0 0 200N 0 201N 1.8 300N 1.8 301N 0 550N 0 551N 1.8
+Vcol3 col3 gnd pwl 0 0 200N 0 201N 1.8 300N 1.8 301N 0 550N 0 551N 1.8
+Vcol4 col4 gnd pwl 0 0 200N 0 201N 1.8 300N 1.8 301N 0 550N 0 551N 1.8
+Vcol5 col5 gnd pwl 0 0 200N 0 201N 1.8 300N 1.8 301N 0 550N 0 551N 1.8
+Vcol6 col6 gnd pwl 0 0 200N 0 201N 1.8 300N 1.8 301N 0 550N 0 551N 1.8
+Vcol7 col7 gnd pwl 0 0 200N 0 201N 1.8 300N 1.8 301N 0 550N 0 551N 1.8
+Vsense SenseEnable gnd pwl 0 0 550N 0 551N 1.8
+Vwl0 wl0 gnd pwl 0 0 250N 0 251N 1.8 300N 1.8 301N 0 500N 0 501N 1.8
+*Vwl wl0 gnd pwl 0 0 500N 0 501N 1.8 1U 1.8 1.001U 0 2U 0
 *Vse SenseEnable gnd pwl 0 0 1.5U 0 1.501U 1.8 2U 1.8
-Vse SenseEnable gnd 1.8V
+*Vse SenseEnable gnd 1.8V
 
 * Initial Conditions
-.ic b0 = 1.8
-.ic b_bar0 = 1.8
+*.ic b0 = 1.8
+*.ic b_bar0 = 1.8
 
 * Main Circuit
 X1 b255 b254 b253 b252 b251 b250 b249 b248 b247 b246 b245 b244 b243 b242 b241 b240 b239 b238 b237 b236 b235 b234 b233 b232 b231 b230 b229 b228 b227 b226 b225 b224 b223 b222 b221 b220 b219 b218 b217 b216 b215 b214 b213 b212 b211 b210 b209 b208 b207 b206 b205 b204 b203 b202 b201 b200 b199 b198 b197 b196 b195 b194 b193 b192 b191 b190 b189 b188 b187 b186 b185 b184 b183 b182 b181 b180 b179 b178 b177 b176 b175 b174 b173 b172 b171 b170 b169 b168 b167 b166 b165 b164 b163 b162 b161 b160 b159 b158 b157 b156 b155 b154 b153 b152 b151 b150 b149 b148 b147 b146 b145 b144 b143 b142 b141 b140 b139 b138 b137 b136 b135 b134 b133 b132 b131 b130 b129 b128 b127 b126 b125 b124 b123 b122 b121 b120 b119 b118 b117 b116 b115 b114 b113 b112 b111 b110 b109 b108 b107 b106 b105 b104 b103 b102 b101 b100 b99 b98 b97 b96 b95 b94 b93 b92 b91 b90 b89 b88 b87 b86 b85 b84 b83 b82 b81 b80 b79 b78 b77 b76 b75 b74 b73 b72 b71 b70 b69 b68 b67 b66 b65 b64 b63 b62 b61 b60 b59 b58 b57 b56 b55 b54 b53 b52 b51 b50 b49 b48 b47 b46 b45 b44 b43 b42 b41 b40 b39 b38 b37 b36 b35 b34 b33 b32 b31 b30 b29 b28 b27 b26 b25 b24 b23 b22 b21 b20 b19 b18 b17 b16 b15 b14 b13 b12 b11 b10 b9 b8 b7 b6 b5 b4 b3 b2 b1 b0 b_bar255 b_bar254 b_bar253 b_bar252 b_bar251 b_bar250 b_bar249 b_bar248 b_bar247 b_bar246 b_bar245 b_bar244 b_bar243 b_bar242 b_bar241 b_bar240 b_bar239 b_bar238 b_bar237 b_bar236 b_bar235 b_bar234 b_bar233 b_bar232 b_bar231 b_bar230 b_bar229 b_bar228 b_bar227 b_bar226 b_bar225 b_bar224 b_bar223 b_bar222 b_bar221 b_bar220 b_bar219 b_bar218 b_bar217 b_bar216 b_bar215 b_bar214 b_bar213 b_bar212 b_bar211 b_bar210 b_bar209 b_bar208 b_bar207 b_bar206 b_bar205 b_bar204 b_bar203 b_bar202 b_bar201 b_bar200 b_bar199 b_bar198 b_bar197 b_bar196 b_bar195 b_bar194 b_bar193 b_bar192 b_bar191 b_bar190 b_bar189 b_bar188 b_bar187 b_bar186 b_bar185 b_bar184 b_bar183 b_bar182 b_bar181 b_bar180 b_bar179 b_bar178 b_bar177 b_bar176 b_bar175 b_bar174 b_bar173 b_bar172 b_bar171 b_bar170 b_bar169 b_bar168 b_bar167 b_bar166 b_bar165 b_bar164 b_bar163 b_bar162 b_bar161 b_bar160 b_bar159 b_bar158 b_bar157 b_bar156 b_bar155 b_bar154 b_bar153 b_bar152 b_bar151 b_bar150 b_bar149 b_bar148 b_bar147 b_bar146 b_bar145 b_bar144 b_bar143 b_bar142 b_bar141 b_bar140 b_bar139 b_bar138 b_bar137 b_bar136 b_bar135 b_bar134 b_bar133 b_bar132 b_bar131 b_bar130 b_bar129 b_bar128 b_bar127 b_bar126 b_bar125 b_bar124 b_bar123 b_bar122 b_bar121 b_bar120 b_bar119 b_bar118 b_bar117 b_bar116 b_bar115 b_bar114 b_bar113 b_bar112 b_bar111 b_bar110 b_bar109 b_bar108 b_bar107 b_bar106 b_bar105 b_bar104 b_bar103 b_bar102 b_bar101 b_bar100 b_bar99 b_bar98 b_bar97 b_bar96 b_bar95 b_bar94 b_bar93 b_bar92 b_bar91 b_bar90 b_bar89 b_bar88 b_bar87 b_bar86 b_bar85 b_bar84 b_bar83 b_bar82 b_bar81 b_bar80 b_bar79 b_bar78 b_bar77 b_bar76 b_bar75 b_bar74 b_bar73 b_bar72 b_bar71 b_bar70 b_bar69 b_bar68 b_bar67 b_bar66 b_bar65 b_bar64 b_bar63 b_bar62 b_bar61 b_bar60 b_bar59 b_bar58 b_bar57 b_bar56 b_bar55 b_bar54 b_bar53 b_bar52 b_bar51 b_bar50 b_bar49 b_bar48 b_bar47 b_bar46 b_bar45 b_bar44 b_bar43 b_bar42 b_bar41 b_bar40 b_bar39 b_bar38 b_bar37 b_bar36 b_bar35 b_bar34 b_bar33 b_bar32 b_bar31 b_bar30 b_bar29 b_bar28 b_bar27 b_bar26 b_bar25 b_bar24 b_bar23 b_bar22 b_bar21 b_bar20 b_bar19 b_bar18 b_bar17 b_bar16 b_bar15 b_bar14 b_bar13 b_bar12 b_bar11 b_bar10 b_bar9 b_bar8 b_bar7 b_bar6 b_bar5 b_bar4 b_bar3 b_bar2 b_bar1 b_bar0 wl255 wl254 wl253 wl252 wl251 wl250 wl249 wl248 wl247 wl246 wl245 wl244 wl243 wl242 wl241 wl240 wl239 wl238 wl237 wl236 wl235 wl234 wl233 wl232 wl231 wl230 wl229 wl228 wl227 wl226 wl225 wl224 wl223 wl222 wl221 wl220 wl219 wl218 wl217 wl216 wl215 wl214 wl213 wl212 wl211 wl210 wl209 wl208 wl207 wl206 wl205 wl204 wl203 wl202 wl201 wl200 wl199 wl198 wl197 wl196 wl195 wl194 wl193 wl192 wl191 wl190 wl189 wl188 wl187 wl186 wl185 wl184 wl183 wl182 wl181 wl180 wl179 wl178 wl177 wl176 wl175 wl174 wl173 wl172 wl171 wl170 wl169 wl168 wl167 wl166 wl165 wl164 wl163 wl162 wl161 wl160 wl159 wl158 wl157 wl156 wl155 wl154 wl153 wl152 wl151 wl150 wl149 wl148 wl147 wl146 wl145 wl144 wl143 wl142 wl141 wl140 wl139 wl138 wl137 wl136 wl135 wl134 wl133 wl132 wl131 wl130 wl129 wl128 wl127 wl126 wl125 wl124 wl123 wl122 wl121 wl120 wl119 wl118 wl117 wl116 wl115 wl114 wl113 wl112 wl111 wl110 wl109 wl108 wl107 wl106 wl105 wl104 wl103 wl102 wl101 wl100 wl99 wl98 wl97 wl96 wl95 wl94 wl93 wl92 wl91 wl90 wl89 wl88 wl87 wl86 wl85 wl84 wl83 wl82 wl81 wl80 wl79 wl78 wl77 wl76 wl75 wl74 wl73 wl72 wl71 wl70 wl69 wl68 wl67 wl66 wl65 wl64 wl63 wl62 wl61 wl60 wl59 wl58 wl57 wl56 wl55 wl54 wl53 wl52 wl51 wl50 wl49 wl48 wl47 wl46 wl45 wl44 wl43 wl42 wl41 wl40 wl39 wl38 wl37 wl36 wl35 wl34 wl33 wl32 wl31 wl30 wl29 wl28 wl27 wl26 wl25 wl24 wl23 wl22 wl21 wl20 wl19 wl18 wl17 wl16 wl15 wl14 wl13 wl12 wl11 wl10 wl9 wl8 wl7 wl6 wl5 wl4 wl3 wl2 wl1 wl0 vdd gnd sram_array
@@ -28,12 +59,12 @@ X3 col255 col254 col253 col252 col251 col250 col249 col248 col247 col246 col245 
 X4 pc b255 b254 b253 b252 b251 b250 b249 b248 b247 b246 b245 b244 b243 b242 b241 b240 b239 b238 b237 b236 b235 b234 b233 b232 b231 b230 b229 b228 b227 b226 b225 b224 b223 b222 b221 b220 b219 b218 b217 b216 b215 b214 b213 b212 b211 b210 b209 b208 b207 b206 b205 b204 b203 b202 b201 b200 b199 b198 b197 b196 b195 b194 b193 b192 b191 b190 b189 b188 b187 b186 b185 b184 b183 b182 b181 b180 b179 b178 b177 b176 b175 b174 b173 b172 b171 b170 b169 b168 b167 b166 b165 b164 b163 b162 b161 b160 b159 b158 b157 b156 b155 b154 b153 b152 b151 b150 b149 b148 b147 b146 b145 b144 b143 b142 b141 b140 b139 b138 b137 b136 b135 b134 b133 b132 b131 b130 b129 b128 b127 b126 b125 b124 b123 b122 b121 b120 b119 b118 b117 b116 b115 b114 b113 b112 b111 b110 b109 b108 b107 b106 b105 b104 b103 b102 b101 b100 b99 b98 b97 b96 b95 b94 b93 b92 b91 b90 b89 b88 b87 b86 b85 b84 b83 b82 b81 b80 b79 b78 b77 b76 b75 b74 b73 b72 b71 b70 b69 b68 b67 b66 b65 b64 b63 b62 b61 b60 b59 b58 b57 b56 b55 b54 b53 b52 b51 b50 b49 b48 b47 b46 b45 b44 b43 b42 b41 b40 b39 b38 b37 b36 b35 b34 b33 b32 b31 b30 b29 b28 b27 b26 b25 b24 b23 b22 b21 b20 b19 b18 b17 b16 b15 b14 b13 b12 b11 b10 b9 b8 b7 b6 b5 b4 b3 b2 b1 b0 b_bar255 b_bar254 b_bar253 b_bar252 b_bar251 b_bar250 b_bar249 b_bar248 b_bar247 b_bar246 b_bar245 b_bar244 b_bar243 b_bar242 b_bar241 b_bar240 b_bar239 b_bar238 b_bar237 b_bar236 b_bar235 b_bar234 b_bar233 b_bar232 b_bar231 b_bar230 b_bar229 b_bar228 b_bar227 b_bar226 b_bar225 b_bar224 b_bar223 b_bar222 b_bar221 b_bar220 b_bar219 b_bar218 b_bar217 b_bar216 b_bar215 b_bar214 b_bar213 b_bar212 b_bar211 b_bar210 b_bar209 b_bar208 b_bar207 b_bar206 b_bar205 b_bar204 b_bar203 b_bar202 b_bar201 b_bar200 b_bar199 b_bar198 b_bar197 b_bar196 b_bar195 b_bar194 b_bar193 b_bar192 b_bar191 b_bar190 b_bar189 b_bar188 b_bar187 b_bar186 b_bar185 b_bar184 b_bar183 b_bar182 b_bar181 b_bar180 b_bar179 b_bar178 b_bar177 b_bar176 b_bar175 b_bar174 b_bar173 b_bar172 b_bar171 b_bar170 b_bar169 b_bar168 b_bar167 b_bar166 b_bar165 b_bar164 b_bar163 b_bar162 b_bar161 b_bar160 b_bar159 b_bar158 b_bar157 b_bar156 b_bar155 b_bar154 b_bar153 b_bar152 b_bar151 b_bar150 b_bar149 b_bar148 b_bar147 b_bar146 b_bar145 b_bar144 b_bar143 b_bar142 b_bar141 b_bar140 b_bar139 b_bar138 b_bar137 b_bar136 b_bar135 b_bar134 b_bar133 b_bar132 b_bar131 b_bar130 b_bar129 b_bar128 b_bar127 b_bar126 b_bar125 b_bar124 b_bar123 b_bar122 b_bar121 b_bar120 b_bar119 b_bar118 b_bar117 b_bar116 b_bar115 b_bar114 b_bar113 b_bar112 b_bar111 b_bar110 b_bar109 b_bar108 b_bar107 b_bar106 b_bar105 b_bar104 b_bar103 b_bar102 b_bar101 b_bar100 b_bar99 b_bar98 b_bar97 b_bar96 b_bar95 b_bar94 b_bar93 b_bar92 b_bar91 b_bar90 b_bar89 b_bar88 b_bar87 b_bar86 b_bar85 b_bar84 b_bar83 b_bar82 b_bar81 b_bar80 b_bar79 b_bar78 b_bar77 b_bar76 b_bar75 b_bar74 b_bar73 b_bar72 b_bar71 b_bar70 b_bar69 b_bar68 b_bar67 b_bar66 b_bar65 b_bar64 b_bar63 b_bar62 b_bar61 b_bar60 b_bar59 b_bar58 b_bar57 b_bar56 b_bar55 b_bar54 b_bar53 b_bar52 b_bar51 b_bar50 b_bar49 b_bar48 b_bar47 b_bar46 b_bar45 b_bar44 b_bar43 b_bar42 b_bar41 b_bar40 b_bar39 b_bar38 b_bar37 b_bar36 b_bar35 b_bar34 b_bar33 b_bar32 b_bar31 b_bar30 b_bar29 b_bar28 b_bar27 b_bar26 b_bar25 b_bar24 b_bar23 b_bar22 b_bar21 b_bar20 b_bar19 b_bar18 b_bar17 b_bar16 b_bar15 b_bar14 b_bar13 b_bar12 b_bar11 b_bar10 b_bar9 b_bar8 b_bar7 b_bar6 b_bar5 b_bar4 b_bar3 b_bar2 b_bar1 b_bar0 vdd gnd PC_array
 
 * Control Options
-.options post=2
+.options post probe
 
 * Analysis
-.tran 1P 2U 0.1U UIC
+.tran 10P 600N
 
 * Output
-.probe tran v(wl0) v(b0) v(b_bar0) v(out0)
+.probe tran v(out0) v(out1) v(out2) v(out3) v(out4) v(out5) v(out6) v(out7) v(Vpc) v(Vwl0) v(Vw) v(Vsense) v(Vd0) v(Vd1) v(Vd2) v(Vd3) v(Vd4) v(Vd5) v(Vd6) v(Vd7) v(Vd_bar0) v(Vd_bar1) v(Vd_bar2) v(Vd_bar3) v(Vd_bar4) v(Vd_bar5) v(Vd_bar6) v(Vd_bar7) v(Vcol0) v(Vcol1) v(Vcol2) v(Vcol3) v(Vcol4) v(Vcol5) v(Vcol6) v(Vcol7)
 
 .end

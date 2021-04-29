@@ -1,6 +1,6 @@
 * 180nm NOR gates
 
-.INCLUDE ./180nm-PTM-BSIM3-Bulk-CMOS-V0-L49-2001.txt
+*.INCLUDE ./180nm-PTM-BSIM3-Bulk-CMOS-V0-L49-2001.txt
 
 .PARAM width_nmos=0.18um
 .PARAM width_pmos=0.36um
