@@ -21,13 +21,13 @@ Vd4 d4 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
 Vd5 d5 gnd 0
 Vd6 d6 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
 Vd7 d7 gnd 0
-Vd_bar0 d_bar0 0
-Vd_bar1 d_bar1 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
-Vd_bar2 d_bar2 0
-Vd_bar3 d_bar3 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
-Vd_bar4 d_bar4 0
+Vd_bar0 d_bar0 gnd 0
+Vd_bar1 d_bar1 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
+Vd_bar2 d_bar2 gnd 0
+Vd_bar3 d_bar3 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
+Vd_bar4 d_bar4 gnd pwl 0 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
 Vd_bar5 d_bar5 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
-Vd_bar6 d_bar6 0
+Vd_bar6 d_bar6 gnd pwl 0 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
 Vd_bar7 d_bar7 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
 Vd33 d33 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
 Vd34 d34 gnd 0
@@ -37,13 +37,13 @@ Vd37 d37 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
 Vd38 d38 gnd 0
 Vd39 d39 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
 Vd40 d40 gnd 0
-Vd_bar33 d_bar33 0
+Vd_bar33 d_bar33 gnd 0
 Vd_bar34 d_bar34 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
-Vd_bar35 d_bar35 0
+Vd_bar35 d_bar35 gnd 0
 Vd_bar36 d_bar36 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
-Vd_bar37 d_bar37 0
+Vd_bar37 d_bar37 gnd 0
 Vd_bar38 d_bar38 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
-Vd_bar39 d_bar39 0
+Vd_bar39 d_bar39 gnd 0
 Vd_bar40 d_bar40 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
 Vcol0 col0 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '30*p' 0 '30*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
 Vcol1 col1 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '30*p' 0 '30*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
