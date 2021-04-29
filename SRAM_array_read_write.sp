@@ -6,29 +6,29 @@ SRAM Cell Subcircuit
 .include ./col_devices_array.txt
 
 * Parameters
-.param p = 5N
+.param p = 2N
 .param dt = 10P
 
 * Voltage Sources
 Vpwr vdd gnd 1.8
-Vpc pc gnd pwl 0 0 p 0 'p+dt' 1.8 '6*p' 1.8 '6*p+dt' 0 '7*p' 0 '7*p+dt' 1.8 '11*p' 1.8 '11*p+dt' 0 '12*p' 0 '12*p+dt' 1.8 '17*p' 1.8 '17*p+dt' 0 '18*p' 0 '18*p+dt' 1.8
-Vw w gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
-Vd0 d0 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
-Vd1 d1 gnd 0
-Vd2 d2 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
-Vd3 d3 gnd 0
+Vpc pc gnd pwl 0 0 p 0 'p+dt' 1.8 '6*p' 1.8 '6*p+dt' 0 '7*p' 0 '7*p+dt' 1.8 '11*p' 1.8 '11*p+dt' 0 '12*p' 0 '12*p+dt' 1.8 '17*p' 1.8 '17*p+dt' 0 '18*p' 0 '18*p+dt' 1.8 '22*p' 1.8 '22*p+dt' 0 '23*p' 0 '23*p+dt' 1.8 '27*p' 1.8 '27*p+dt' 0 '28*p' 0 '28*p+dt' 1.8 '33*p' 1.8 '33*p+dt' 0 '34*p' 0 '34*p+dt' 1.8
+Vw w gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
+Vd0 d0 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
+Vd1 d1 gnd pwl 0 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
+Vd2 d2 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
+Vd3 d3 gnd pwl 0 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
 Vd4 d4 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
 Vd5 d5 gnd 0
 Vd6 d6 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
 Vd7 d7 gnd 0
 Vd_bar0 d_bar0 0
-Vd_bar1 d_bar1 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
+Vd_bar1 d_bar1 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
 Vd_bar2 d_bar2 0
-Vd_bar3 d_bar3 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
+Vd_bar3 d_bar3 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
 Vd_bar4 d_bar4 0
-Vd_bar5 d_bar5 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
+Vd_bar5 d_bar5 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
 Vd_bar6 d_bar6 0
-Vd_bar7 d_bar7 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0
+Vd_bar7 d_bar7 gnd pwl 0 0 '2*p' 0 '2*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '29*p' 0 '29*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0
 Vd33 d33 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
 Vd34 d34 gnd 0
 Vd35 d35 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
@@ -45,25 +45,25 @@ Vd_bar37 d_bar37 0
 Vd_bar38 d_bar38 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
 Vd_bar39 d_bar39 0
 Vd_bar40 d_bar40 gnd pwl 0 0 '13*p' 0 '13*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0
-Vcol0 col0 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol1 col1 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol2 col2 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol3 col3 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8 
-Vcol4 col4 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol5 col5 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol6 col6 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol7 col7 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol33 col33 gnd pwl 0 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol34 col34 gnd pwl 0 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol35 col35 gnd pwl 0 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol36 col36 gnd pwl 0 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol37 col37 gnd pwl 0 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol38 col38 gnd pwl 0 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol39 col39 gnd pwl 0 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vcol40 col40 gnd pwl 0 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vsense SenseEnable gnd pwl 0 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '20*p' 0 '20*p+dt' 1.8
-Vwl0 wl0 gnd pwl 0 0 '4*p' 0 '4*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '8*p' 0 '8*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '19*p' 0 '19*p+dt' 1.8
-Vwl4 wl4 gnd pwl 0 0 '8*p' 0 '8*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '15*p' 0 '15*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '19*p' 0 '19*p+dt' 1.8
+Vcol0 col0 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '30*p' 0 '30*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
+Vcol1 col1 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '30*p' 0 '30*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
+Vcol2 col2 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '30*p' 0 '30*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
+Vcol3 col3 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '30*p' 0 '30*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
+Vcol4 col4 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '30*p' 0 '30*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
+Vcol5 col5 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '30*p' 0 '30*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
+Vcol6 col6 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '30*p' 0 '30*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
+Vcol7 col7 gnd pwl 0 0 '3*p' 0 '3*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '30*p' 0 '30*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
+Vcol33 col33 gnd pwl 0 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8 '21*p' 1.8 '21*p+dt' 0
+Vcol34 col34 gnd pwl 0 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8 '21*p' 1.8 '21*p+dt' 0
+Vcol35 col35 gnd pwl 0 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8 '21*p' 1.8 '21*p+dt' 0
+Vcol36 col36 gnd pwl 0 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8 '21*p' 1.8 '21*p+dt' 0
+Vcol37 col37 gnd pwl 0 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8 '21*p' 1.8 '21*p+dt' 0
+Vcol38 col38 gnd pwl 0 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8 '21*p' 1.8 '21*p+dt' 0
+Vcol39 col39 gnd pwl 0 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8 '21*p' 1.8 '21*p+dt' 0
+Vcol40 col40 gnd pwl 0 0 '14*p' 0 '14*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '20*p' 0 '20*p+dt' 1.8 '21*p' 1.8 '21*p+dt' 0
+Vsense SenseEnable gnd pwl 0 0 '9*p' 0 '9*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '20*p' 0 '20*p+dt' 1.8 '21*p' 1.8 '21*p+dt' 0 '25*p' 0 '25*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '36*p' 0 '36*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 1.8
+Vwl0 wl0 gnd pwl 0 0 '4*p' 0 '4*p+dt' 1.8 '5*p' 1.8 '5*p+dt' 0 '8*p' 0 '8*p+dt' 1.8 '10*p' 1.8 '10*p+dt' 0 '24*p' 0 '24*p+dt' 1.8 '26*p' 1.8 '26*p+dt' 0 '31*p' 0 '31*p+dt' 1.8 '32*p' 1.8 '32*p+dt' 0 '35*p' 0 '35*p+dt' 1.8 '37*p' 1.8 '37*p+dt' 0
+Vwl4 wl4 gnd pwl 0 0 '15*p' 0 '15*p+dt' 1.8 '16*p' 1.8 '16*p+dt' 0 '19*p' 0 '19*p+dt' 1.8 '21*p' 1.8 '21*p+dt' 0
 *Vwl wl0 gnd pwl 0 0 500N 0 501N 1.8 1U 1.8 1.001U 0 2U 0
 *Vse SenseEnable gnd pwl 0 0 1.5U 0 1.501U 1.8 2U 1.8
 *Vse SenseEnable gnd 1.8V
@@ -87,7 +87,7 @@ X4 pc b255 b254 b253 b252 b251 b250 b249 b248 b247 b246 b245 b244 b243 b242 b241
 .options post probe
 
 * Analysis
-.tran 10P '22*p'
+.tran 10P '38*p'
 
 * Output
 .probe tran v(out0) v(out1) v(out2) v(out3) v(out4) v(out5) v(out6) v(out7) v(out33) v(out34) v(out35) v(out36) v(out37) v(out38) v(out39) v(out40) v(pc) v(wl0) v(wl4) v(w) v(SenseEnable) v(d0) v(d1) v(d2) v(d3) v(d4) v(d5) v(d6) v(d7) v(d33) v(d34) v(d35) v(d36) v(d37) v(d38) v(d39) v(d40) v(d_bar0) v(d_bar1) v(d_bar2) v(d_bar3) v(d_bar4) v(d_bar5) v(d_bar6) v(d_bar7) v(d_bar33) v(d_bar34) v(d_bar35) v(d_bar36) v(d_bar37) v(d_bar38) v(d_bar39) v(d_bar40) v(col0) v(col1) v(col2) v(col3) v(col4) v(col5) v(col6) v(col7) v(col33) v(col34) v(col35) v(col36) v(col37) v(col38) v(col39) v(col40)
