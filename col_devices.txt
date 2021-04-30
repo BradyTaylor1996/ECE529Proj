@@ -6,13 +6,13 @@
 .subckt WD col_local w_local d_local dbar_local b_local bbar_local vdd_local gnd_local
 Xand13 w_local    dbar_local 13 vdd_local gnd_local AND2
 Xand14 w_local    d_local    14 vdd_local gnd_local AND2
-Mn13   b_local    13         1         gnd_local NMOS W='width_nmos*12' L='length'
-Mn14   bbar_local 14         1         gnd_local NMOS W='width_nmos*12' L='length'
-Mn15   1          col_local  gnd_local gnd_local NMOS W='width_nmos*12' L='length'
+Mn13   b_local    13         1         gnd_local NMOS W='width_nmos*6' L='length'
+Mn14   bbar_local 14         1         gnd_local NMOS W='width_nmos*6' L='length'
+Mn15   1          col_local  gnd_local gnd_local NMOS W='width_nmos*6' L='length'
 .ends
 
 * define PC subcircuit - pc b bbar vdd gnd
 .subckt PC pc_local b_local bbar_local vdd_local gnd_local
-Mn7 b_local    pc_local vdd_local vdd_local PMOS W='width_nmos*24' L='length'
-Mn8 bbar_local pc_local vdd_local vdd_local PMOS W='width_nmos*24' L='length'
+Mn7 b_local    pc_local vdd_local vdd_local PMOS W='width_nmos*12' L='length'
+Mn8 bbar_local pc_local vdd_local vdd_local PMOS W='width_nmos*12' L='length'
 .ends

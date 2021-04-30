@@ -16,17 +16,17 @@ M6 q_bar q vdd vdd PMOS L=200N W=1.8U
 * Voltage Sources
 Vpwr vdd gnd 1.8
 Vwl wl gnd pwl 0 0 500N 0 501N 1.8 1U 1.8 1.001U 0 2U 0
-Vb b gnd 1.8
-Vb_bar b_bar gnd 0
 
 * Initial Conditions
-.ic q = 0
-.ic q_bar = 1.8
+.ic q = 1.8
+.ic q_bar = 0
+.ic b = 0
+.ic b_bar = 1.8
 
 * Main Circuit
 X1 b b_bar q q_bar wl vdd gnd sram_cell
-C1 b gnd 5P
-C2 b_bar gnd 5P
+C1 b gnd 336f
+C2 b_bar gnd 336f
 
 * Control Options
 .options post probe
